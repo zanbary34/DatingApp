@@ -1,7 +1,24 @@
 @API_HostAddress = http://localhost:5067
 
-GET {{API_HostAddress}}/api/users
+GET {{API_HostAddress}}/api/users/1
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkYXZlIiwibmJmIjoxNzM3NDkzMTY3LCJleHAiOjE3MzgwOTc5NjcsImlhdCI6MTczNzQ5MzE2N30.KnIrsc60NDIBCLFNdji-oYdc93EgnF2HGsrCu5pj427djdbbNa3Y0Q1lWQH6ToilSADqlzqRjTsfM8omfYM_IA
 
-GET {{API_HostAddress}}/api/users/2
+
+POST  {{API_HostAddress}}/api/account/register
 Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "dave",
+  "password": "strongpassword"
+}
+
+POST  {{API_HostAddress}}/api/account/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "dave",
+  "password": "strongpassword"
+}
