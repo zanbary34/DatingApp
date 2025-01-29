@@ -50,7 +50,7 @@ public class AccountController(DataContext context, ITokenService tokenService) 
 
         return new UserDTO 
         {
-            UserName = user.UserName,
+            Username = user.UserName,
             Token = tokenService.CreateToken(user)
         };
     }

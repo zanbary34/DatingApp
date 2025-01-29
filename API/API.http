@@ -22,3 +22,6 @@ Content-Type: application/json
   "username": "dave",
   "password": "strongpassword"
 }
+ 
+GET  {{API_HostAddress}}/api/buggy/server-error
+Accept: application/json
