@@ -1,27 +1,29 @@
 @API_HostAddress = http://localhost:5067
 
-GET {{API_HostAddress}}/api/users/1
+GET {{API_HostAddress}}/api/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkYXZlIiwibmJmIjoxNzM3NDkzMTY3LCJleHAiOjE3MzgwOTc5NjcsImlhdCI6MTczNzQ5MzE2N30.KnIrsc60NDIBCLFNdji-oYdc93EgnF2HGsrCu5pj427djdbbNa3Y0Q1lWQH6ToilSADqlzqRjTsfM8omfYM_IA
+Authorization: Bearer {{token}}
 
 
 POST  {{API_HostAddress}}/api/account/register
 Accept: application/json
 Content-Type: application/json
-
 {
-  "username": "dave",
-  "password": "strongpassword"
+  "username": "rosalyn",
+  "password": "Pa$$w0rd"
 }
 
+# @name login
 POST  {{API_HostAddress}}/api/account/login
 Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "dave",
-  "password": "strongpassword"
+  "username": "melinda",
+  "password": "Pa$$w0rd"
 }
+
+@token = {{login.response.body.token}}
  
 GET  {{API_HostAddress}}/api/buggy/server-error
 Accept: application/json
