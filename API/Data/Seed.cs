@@ -21,7 +21,7 @@ public class Seed
         if (users ==null) return;
 
         foreach (var user in users)
-        {
+        {   
             using var hmac = new HMACSHA512();
 
             user.UserName = user.UserName.ToLower();

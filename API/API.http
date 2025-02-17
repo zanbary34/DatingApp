@@ -5,11 +5,12 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 
-POST  {{API_HostAddress}}/api/account/register
+# Register a new user
+POST {{API_HostAddress}}/api/account/register
 Accept: application/json
 Content-Type: application/json
 {
-  "username": "rosalyn",
+  "username": "lisa",
   "password": "Pa$$w0rd"
 }
 
@@ -27,3 +28,13 @@ Content-Type: application/json
  
 GET  {{API_HostAddress}}/api/buggy/server-error
 Accept: application/json
+
+
+POST  {{API_HostAddress}}/api/users/add-photo
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "melinda",
+  "password": "Pa$$w0rd"
+}

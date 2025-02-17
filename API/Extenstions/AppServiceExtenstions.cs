@@ -1,5 +1,6 @@
 using System;
 using API.Data;
+using API.Helpers;
 using API.Interfaces;
 using API.Service;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
@@ -21,8 +22,9 @@ public static class AppServiceExtenstions
         services.AddCors();
         services.AddScoped<ITokenService, TokenService>();  
         services.AddScoped<IUserRepository, UserRepositiry>();
+        services.AddScoped<IPhotoService, PhotoService>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-        
+        services.Configure<CloudinarySettings>(config.GetSection("cloudinarySettings"));
         return services;
     }
 }
