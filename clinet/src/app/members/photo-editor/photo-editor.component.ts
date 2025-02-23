@@ -65,14 +65,15 @@ export class PhotoEditorComponent implements OnInit {
 
   initializeUploader() {
     this.uploader = new FileUploader ({
-      url: this.baseUrl + 'users/add-photo',
-      authToken: 'Berear' + this.accountService.currentUser()?.token,
+      url: this.baseUrl + '/users/add-photo',
+      authToken: `Bearer ${this.accountService.currentUser()?.token}`,
       isHTML5: true,
       allowedFileType: ['image'],
       removeAfterUpload: true,
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024
     });
+    
 
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false
@@ -82,6 +83,18 @@ export class PhotoEditorComponent implements OnInit {
       const photo = JSON.parse(response);
       const updatedMember = {...this.member()};
       updatedMember.photos.push(photo);
+      if (photo.isMain) {
+        const user = this.accountService.currentUser();
+        if (user) {
+          user.photoUrl = photo.url;
+          this.accountService.currentUser.set(user);
+        }
+        updatedMember.photoURL = photo.url;
+        updatedMember.photos.forEach(x => {
+          if (x.isMain) x.isMain = false;
+          if (x.id == photo.id) x.isMain = true;
+        })
+      }
       this.memebrChange.emit(updatedMember);
     }
   }
